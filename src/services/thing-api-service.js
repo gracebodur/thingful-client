@@ -4,6 +4,11 @@ import TokenService from '../services/token-service'
 const ThingApiService = {
   getThings() {
     return fetch(`${config.API_ENDPOINT}/things`, {
+  //     headers: {}
+	// 	}).then(res =>
+	// 		!res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+	// 	)
+	// },
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
@@ -43,7 +48,7 @@ const ThingApiService = {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'authorization': `basic ${TokenService.getAuthToken()}`,
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({
         thing_id: thingId,
